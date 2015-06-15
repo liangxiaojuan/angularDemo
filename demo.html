@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+
+    <div ng-controller="EventController">
+        向上 count: {{count}}
+        <ul>
+            <li  ng-repeat="i in [1]"  ng-controller="EventController">
+            <button ng-click="$emit('MyEvent')">       <!--ng-click="$emit('xxx') 执行同级 和上级的 点击事件!-->
+                 $emit('MyEvent')
+            </button>
+            <button ng-click="$broadcast('MyEvent')">  <!-- ng-click="$broadcast('xxx') 执行同级 和下级的 点击事件!-->
+                $broadcast('MyEvent')
+            </button>
+            <br>
+                平行 count: {{count}}
+                <ul>
+                    <li ng-repeat="item in [1,2] " ng-controller="EventController">
+                        向下 count: {{count}}
+                    </li>
+                </ul>
+            </li>
+            </ul>
+    </div>
+
+
+<script src="js/angular-1.3.0.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>
